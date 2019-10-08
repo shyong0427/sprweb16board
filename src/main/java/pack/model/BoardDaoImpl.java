@@ -22,6 +22,11 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 	}
 	
 	@Override
+	public int totalCnt() {
+		return getSqlSession().selectOne("selectCnt");
+	}
+	
+	@Override
 	public boolean insert(BoardBean bean) {
 		int re = getSqlSession().insert("insertData", bean);
 		

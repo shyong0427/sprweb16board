@@ -36,7 +36,14 @@
 <!-- paging 처리 -->
 					<tr style="text-align: center;">
 						<td colspan="5">
-							<br>
+							<c:forEach var="i" begin="1" end="${pageNum }">
+								<c:if test="${i == page }">
+									<b>${i }</b>
+								</c:if>
+								<c:if test="${i != page }">
+								<a href="list?page=${i }">${i }</a>
+								</c:if>
+							</c:forEach>
 						</td>
 					</tr>
 				</table>
