@@ -7,6 +7,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pack.controller.BoardBean;
+
 @Repository
 public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter {
 	@Autowired
@@ -17,5 +19,19 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 	@Override
 	public ArrayList<BoardDto> getList() {
 		return (ArrayList)getSqlSession().selectList("selectList");
+	}
+	
+	@Override
+	public boolean insert(BoardBean bean) {
+		int re = getSqlSession().insert("insertData", bean);
+		
+		if(re > 0) return true;
+		else return false;
+	}
+	
+	@Override
+	public int currentNum() {
+		if(getSqlSession().selectOne("currentNum") == null) return 0;
+		return getSqlSession().selectOne("currentNum");
 	}
 }

@@ -4,6 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <title>새 글 쓰기</title>
+	<script type="text/javascript">
+		function check() {
+			if(frm.name.value === "") {
+				alert("작성자를 입력해주세요.");
+				frm.name.focus();
+				return;
+			}
+			
+			// 생략
+			
+			frm.submit();
+		}
+	</script>
 </head>
 <body>
 	<h2>** 글쓰기 **</h2>
@@ -28,7 +41,7 @@
 			<tr>
 				<td width="100" style="text-align: center;">글 내 용</td>
 				<td>
-					<textarea rows="10" cols="50" name="cont" style="width=100%"></textarea>
+					<textarea rows="10" cols="50" name="cont"></textarea>
 				</td>
 			</tr>
 			<tr>

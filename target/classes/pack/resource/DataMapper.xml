@@ -4,11 +4,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-	 <select id="selectList" resultType="dto">
-	 	select * from board order by gnum desc, onum asc
-	 </select>
-	 
-	 <select id="selectSearch" parameterType="formbean" resultType="dto">
-	 	select code, sang, su, dan from sangdata where sang like concat('%', #{searchValue}, '%')
-	 </select>
+	<select id="selectList" resultType="dto">
+		SELECT * FROM board ORDER BY gnum DESC, onum ASC
+	</select>
+	
+	<select id="selectOne" parameterType="string" resultType="dto">
+		SELECT * FROM board WHERE num = #{num}
+	</select>
+
+	<select id="searchList" parameterType="formbean" resultType="dto">
+		SELECT * FROM board WHERE ${searchName} LIKE CONCAT('%', #{searchValue}, '%') ORDER BY gnum DESC, onum ASC
+	</select>
+
+	<insert id="insertData" parameterType="formbean">
+		INSERT INTO board VALUES (#{num}, #{name}, #{pass}, #{mail}, #{title}, #{cont}, #{bip}, #{bdate}, 0, #{gnum}, 0, 0)
+	</insert>
+	
+	<update id="updateData" parameterType="formbean">
+		UPDATE board SET name = #{name}, mail = #{mail}, title = #{title}, cont = #{cont} WHERE num = #{num}
+	</update>
+	
+	<delete id="deleteData" parameterType="string">
+		DELETE FROM board WHERE num = #{num}
+	</delete>
+
+<!-- 가장 큰 번호 얻기 -->
+	<select id="currentNum" resultType="integer">
+		SELECT MAX(num) FROM board
+	</select>
+	
+<!-- Paging 처리 시 전체 자료 수 -->
+	<select id="selectCnt" resultType="integer">
+		SELECT COUNT(*) FROM board
+	</select>
 </mapper>
