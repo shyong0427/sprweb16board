@@ -65,4 +65,20 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 		// 수정 시 비밀번호 비교
 		return getSqlSession().selectOne("selectPass", num);
 	}
+	
+	@Override
+	public boolean update(BoardBean bean) {
+		int re = getSqlSession().update("updateData", bean);
+		
+		if(re > 0) return true;
+		else return false;
+	}
+	
+	@Override
+	public boolean delete(String num) {
+	int re = getSqlSession().update("deleteData", num);
+		
+		if(re > 0) return true;
+		else return false;
+	}
 }

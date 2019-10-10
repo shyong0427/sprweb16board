@@ -17,4 +17,7 @@ public interface BoardDaoInter {
 	BoardDto getDetail(String num);
 	
 	String selectPass(String num);
+	
+	boolean update(BoardBean bean);
+	boolean delete(String num);
 }

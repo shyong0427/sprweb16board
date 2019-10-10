@@ -21,4 +21,24 @@ public class EditController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public ModelAndView editSubmits(@RequestParam("num") String num, @RequestParam("page") String page, BoardBean bean) {
+		// 비밀번호 비교
+		String pass = boardDaoInter.selectPass(num);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(bean.getPass().equalsIgnoreCase(pass)) {
+			boardDaoInter.update(bean);
+			modelAndView.setViewName("detail");
+		} else {
+			modelAndView.setViewName("edit");
+			modelAndView.addObject("msg", "비밀번호를 확인해주세요.");
+		}
+		modelAndView.addObject("page", page);
+		modelAndView.addObject("data", bean);
+		
+		return modelAndView;
+	}
 }

@@ -4,10 +4,33 @@
 <head>
 <meta charset="UTF-8">
 <title>수정 페이지</title>
+	<script type="text/javascript">
+		function chk() {
+			if(frm.pass.value == "") {
+				frm.pass.focus();
+				alert("비밀번호를 입력하세요");
+				return;
+			}
+			
+			if(confirm("수정을 진행할까요?")) {
+				frm.submit();
+			}
+		}
+	</script>
 </head>
 <body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<c:if test="${msg != null }">
+		<script type="text/javascript">
+			(function msg() {
+				alert("${msg}");
+			})();
+		</script>	
+	</c:if>
 	<h2>* 글 수 정 * </h2>
 	<form action="edit" method="post" name="frm">
+		<input type="hidden" name="num" value="${data.num }">
+		<input type="hidden" name="page" value="${page }">
 		<table border="1">
 			<tr>
 				<td>이      름</td>
