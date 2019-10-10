@@ -54,4 +54,15 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 		if(re > 0) return true;
 		else return false;
 	}
+	
+	@Override
+	public BoardDto getDetail(String num) {
+		return getSqlSession().selectOne("selectOne", num);
+	}
+	
+	@Override
+	public String selectPass(String num) {
+		// 수정 시 비밀번호 비교
+		return getSqlSession().selectOne("selectPass", num);
+	}
 }

@@ -14,4 +14,7 @@ public interface BoardDaoInter {
 	ArrayList<BoardDto> getSearch(BoardBean bean);
 	
 	boolean updateReadCnt(String num);
+	BoardDto getDetail(String num);
+	
+	String selectPass(String num);
 }

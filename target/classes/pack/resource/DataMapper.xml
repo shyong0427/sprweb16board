@@ -42,4 +42,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="updateReadCnt" parameterType="string">
 		UPDATE board SET readcnt = readcnt + 1 where num = #{num}
 	</select>
+	
+<!-- 수정 시 비밀번호 검사 -->
+	<select id="selectPass" parameterType="string" resultType="string">
+		SELECT pass FROM board WHERE num=#{num}
+	</select>
 </mapper>
