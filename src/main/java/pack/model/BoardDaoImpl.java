@@ -81,4 +81,21 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 		if(re > 0) return true;
 		else return false;
 	}
+	
+	@Override
+	public boolean updateOnum(BoardBean bean) {
+		// 댓글용
+		int re = getSqlSession().update("updateOnum", bean);
+
+		if(re > 0) return true;
+		else return false;
+	}
+	
+	@Override
+	public boolean insertReply(BoardBean bean) {
+		int re = getSqlSession().insert("insertRedata", bean);
+
+		if(re > 0) return true;
+		else return false;
+	}
 }

@@ -20,4 +20,7 @@ public interface BoardDaoInter {
 	
 	boolean update(BoardBean bean);
 	boolean delete(String num);
+	
+	boolean updateOnum(BoardBean bean);
+	boolean insertReply(BoardBean bean);
 }

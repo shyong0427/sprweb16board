@@ -47,4 +47,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectPass" parameterType="string" resultType="string">
 		SELECT pass FROM board WHERE num=#{num}
 	</select>
+	
+<!-- 댓글 -->
+	<update id="updateOnum" parameterType="formbean">
+		UPDATE board SET onum = onum + 1 WHERE gnum = #{gnum} AND onum >= #{onum} 
+	</update>
+	
+	<insert id="insertRedata" parameterType="formbean">
+		INSERT INTO board VALUES (#{num}, #{name}, #{pass}, #{mail}, #{title}, #{cont}, #{bip}, #{bdate}, 0, #{gnum}, #{onum}, #{nested})
+	</insert>
 </mapper>

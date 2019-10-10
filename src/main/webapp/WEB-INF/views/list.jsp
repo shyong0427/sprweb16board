@@ -23,10 +23,15 @@
 						<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
 					</tr>
 					<c:forEach var="b" items="${data }">
+<!-- 댓글 들여쓰기 -->
+						<c:set var="tab" value="" />
+						<c:forEach var="n" begin="1" end="${b.nested }">
+							<c:set var="tab" value="${tab }&nbsp;&nbsp;" />
+						</c:forEach>
 						<tr>
 							<td>${b.num }</td>						
 							<td>
-								<a href="detail?num=${b.num }&page=${page }">${b.title }</a>
+								${tab }<a href="detail?num=${b.num }&page=${page }">${b.title }</a>
 							</td>						
 							<td>${b.name }</td>						
 							<td>${b.bdate }</td>						
