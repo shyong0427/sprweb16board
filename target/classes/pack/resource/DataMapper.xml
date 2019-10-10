@@ -37,4 +37,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCnt" resultType="integer">
 		SELECT COUNT(*) FROM board
 	</select>
+	
+<!-- 조회 수 증가 -->
+	<select id="updateReadCnt" parameterType="string">
+		UPDATE board SET readcnt = readcnt + 1 where num = #{num}
+	</select>
 </mapper>
